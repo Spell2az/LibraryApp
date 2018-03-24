@@ -63,10 +63,24 @@ public class BookCollection
         _dc.Execute("sproc_UpdateBook");
     }
 
-    public void FilerBookBy(string isbn)
+    public void FilerBookByIsbn(string isbn)
     {
         _dc = new DataConnection();
         _dc.AddParameter("@isbn", isbn);
         _dc.Execute("sproc_FilterBookByIsbn");
+    }
+
+    public List<Book> FilterBooksByAll(string isbn, string title, string author, string publisher, string year,
+        string genreCode)
+    {
+        _dc.AddParameter("@isbn", isbn);
+        _dc.AddParameter("@bk_author", author);
+        _dc.AddParameter("@bk_title", title);
+        _dc.AddParameter("@bk_pub_yr", year);
+        _dc.AddParameter("@bk_publisher", publisher);
+        _dc.AddParameter("@fk1_genre_code", genreCode);
+        _dc.Execute("sproc_FilterBooksByAll");
+
+        return _dc.Count == 0 ? new List<Book>() : BookList;
     }
 }

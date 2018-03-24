@@ -27,10 +27,16 @@ public class Book
         Author = row["bk_author"].ToString();
         Title = row["bk_title"].ToString();
         Publisher = row["bk_publisher"].ToString();
-        PubYear = row["bk_pub_year"].ToString();
+        PubYear = row["bk_pub_yr"].ToString();
         ShelfNo = row["bk_shelf_no"].ToString();
         Edition = Convert.ToInt32(row["bk_edition_no"]);
-
+        GenreCode = row["fk1_genre_code"].ToString();
         return true;
+    }
+
+    public string GetGenreDescription(string genreCode)
+    {
+        var genre = new Genre();
+        return genre.GetDescription(genreCode);
     }
 }

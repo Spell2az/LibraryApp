@@ -7,19 +7,30 @@ using System.Web.UI.WebControls;
 
 public partial class BookEdit : System.Web.UI.Page
 {
+    private string _bookIsbn;
+    private bool _isNew;
     protected void Page_Load(object sender, EventArgs e)
     {
-        var bookIsbn = Request.QueryString["isbn"];
-        var newBool = Request.QueryString["isNew"];
 
-        if (bookIsbn != null)
+        _bookIsbn = Request.QueryString["isbn"];
+        _isNew = Convert.ToBoolean(Request.QueryString["isNew"]);
+        if (!Page.IsPostBack)
         {
-            var bookCollection = new BookCollection();
-
-            if (bookCollection.Book.Find(bookIsbn))
+          
+            Response.Write(_isNew);
+            FillDropDown();
+           
+            if (_bookIsbn != null)
             {
-                DisplayBookDetails(bookCollection.Book);
+                var bookCollection = new BookCollection();
+                txtIsbn.Enabled = false;
+                if (bookCollection.Book.Find(_bookIsbn))
+                {
+                    DisplayBookDetails(bookCollection.Book);
+                }
             }
+
+            
         }
     }
 
@@ -31,11 +42,60 @@ public partial class BookEdit : System.Web.UI.Page
         txtPublisher.Text = book.Publisher;
         txtPubYear.Text = book.PubYear;
         txtShelfNo.Text = book.ShelfNo;
-        txtEdition.Text = book.Edition;
+        txtEdition.Text = book.Edition.ToString();
+        ddlGenre.SelectedValue = book.GenreCode;
     }
 
-    private void FillDropDown(string select)
+    private void FillDropDown()
     {
+        var genreCollection = new GenreCollection();
+        genreCollection.FilterGenre("");
+        foreach (var genre in genreCollection.Genres)
+        {
+            ddlGenre.Items.Add(new ListItem(genre.Description, genre.GenreCode));
+        }
         
     }
+
+    protected void HandlerCancelBook(object sender, EventArgs e)
+    {
+        Response.Redirect("BookManagement.aspx");
+    }
+    protected void HandlerUpdateBook(object sender, EventArgs e)
+    {
+        var bookCollection = new BookCollection();
+        var book = bookCollection.Book;
+
+        book.Isbn = txtIsbn.Text;
+        book.Title = txtTitle.Text;
+        book.Author = txtAuthor.Text;
+        book.Publisher = txtPublisher.Text;
+        book.PubYear = txtPubYear.Text;
+        book.ShelfNo = txtShelfNo.Text;
+        book.Edition = Convert.ToInt32(txtEdition.Text);
+        book.GenreCode = ddlGenre.SelectedValue;
+
+        bool isThere = book.Find(book.Isbn);
+
+        if (_isNew && !isThere)
+        {
+            bookCollection.Add();
+        }
+        else if (isThere)
+        {
+            //Display Error
+            ScriptManager.RegisterStartupScript(
+                this,
+                typeof(Page),
+                "Alert",
+                "<script>alert('Isbn already exists.');</script>",
+                false);
+        }
+        else
+        {
+            bookCollection.Update();
+        }
+    }
+
+  
 }

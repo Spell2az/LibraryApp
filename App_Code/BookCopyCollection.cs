@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 
 /// <summary>
@@ -62,4 +63,5 @@ public class BookCopyCollection
         _dc.AddParameter("@cop_barcode", barcode);
         _dc.Execute("sproc_FilterBookCopyByBarcode");
     }
+
 }
