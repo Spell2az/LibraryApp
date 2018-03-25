@@ -43,7 +43,7 @@
                     <th>Shelf No.</th>
                     <th>Edition</th>
                     <th>Genre</th>
-                    <th> </th>
+                    <th> </th>             
                     <th> </th>
                     <th> </th>
                 </tr>

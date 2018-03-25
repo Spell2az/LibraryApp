@@ -17,7 +17,7 @@ public partial class BookEdit : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
           
-            Response.Write(_isNew);
+            
             FillDropDown();
            
             if (_bookIsbn != null)

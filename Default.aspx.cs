@@ -16,4 +16,9 @@ public partial class _Default : System.Web.UI.Page
     {
         Response.Redirect("BookManagement.aspx");
     }
+
+    protected void HandlerEditGenre(object sender, EventArgs e)
+    {
+        Response.Redirect("EditGenre.aspx");
+    }
 }

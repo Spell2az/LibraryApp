@@ -14,17 +14,17 @@ public class BookCopy
         var dc = new DataConnection();
 
         dc.AddParameter("@cop_barcode", barcode);
-        dc.Execute("sprocGetGuestById");
+        dc.Execute("sproc_GetBookCopyByBarcode");
 
         if (dc.Count != 1) return false;
 
         var copyRow = dc.DataTable.Rows[0];
 
         Barcode = copyRow["cop_barcode"].ToString();
-        LoanType = copyRow["cop_loan_type"].ToString();
-        Status = copyRow["cop_status"].ToString();
-        Condition = copyRow["cop_condition"].ToString();
-        CopyIsbn = copyRow["fk1_isbn"].ToString();
+        LoanType = copyRow["cop_loan_type"].ToString().Trim();
+        Status = copyRow["cop_status"].ToString().Trim();
+        Condition = copyRow["cop_condition"].ToString().Trim();
+        CopyIsbn = copyRow["fk1_isbn"].ToString().Trim();
 
         return true;
     }

@@ -57,11 +57,11 @@ public class BookCopyCollection
         _dc.Execute("sproc_AddBookCopy");
     }
 
-    public void Filter(string barcode)
+    public void FilterCopiesByIsbn(string isbn)
     {
         _dc = new DataConnection();
-        _dc.AddParameter("@cop_barcode", barcode);
-        _dc.Execute("sproc_FilterBookCopyByBarcode");
+        _dc.AddParameter("@isbn", isbn);
+        _dc.Execute("sproc_FilterBookCopyByIsbn");
     }
 
 }

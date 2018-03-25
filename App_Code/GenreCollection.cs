@@ -33,19 +33,19 @@ public class GenreCollection
         dc.Execute("sproc_DeleteGenre");
     }
 
-    public void Update(string genreCode, string genreDescription)
+    public void Update()
     {
         _dc = new DataConnection();
-        _dc.AddParameter("@genre_code", genreCode);
-        _dc.AddParameter("@genre_description", genreDescription);
+        _dc.AddParameter("@genre_code", Genre.GenreCode);
+        _dc.AddParameter("@genre_description", Genre.Description);
         _dc.Execute("sproc_UpdateGenre");
     }
 
-    public void Add(string genreCode, string genreDescription)
+    public void Add()
     {
         _dc = new DataConnection();
-        _dc.AddParameter("@genre_code", genreCode);
-        _dc.AddParameter("@genre_description", genreDescription);
+        _dc.AddParameter("@genre_code", Genre.GenreCode);
+        _dc.AddParameter("@genre_description", Genre.Description);
         _dc.Execute("sproc_AddGenre");
     }
 
