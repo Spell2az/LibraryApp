@@ -9,11 +9,15 @@ public partial class BookManagement : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        var books = new BookCollection();
-        books.FilerBookByIsbn("");
-        rptBookDisplay.DataSource = books.BookList;
-        rptBookDisplay.DataBind();
-        FillDropDown();
+
+        if (!Page.IsPostBack)
+        {
+            var books = new BookCollection();
+            books.FilerBookByIsbn("");
+            rptBookDisplay.DataSource = books.BookList;
+            rptBookDisplay.DataBind();
+            FillDropDown();
+        }
     }
 
     protected void GoToEditBook(object sender, EventArgs e)
@@ -36,7 +40,7 @@ public partial class BookManagement : System.Web.UI.Page
         {
             isbn = source.CommandArgument;
         }
-        Response.Redirect($"BookCopies.aspx?isbn={isbn}");
+        Response.Redirect($"BookCopies.aspx?isbn={isbn.Trim()}");
     }
 
     protected void HandlerAddNewBook(object sender, EventArgs e)
@@ -64,6 +68,7 @@ public partial class BookManagement : System.Web.UI.Page
 
     private void FillDropDown()
     {
+        ddlGenre.Items.Clear();
         var genreCollection = new GenreCollection();
         genreCollection.FilterGenre("");
         ddlGenre.Items.Add(new ListItem("...Any", ""));
@@ -76,7 +81,16 @@ public partial class BookManagement : System.Web.UI.Page
 
     protected void HandlerSearchBooks(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        var books=  new BookCollection();
+        var isbn = txtIsbn.Text;
+        var title = txtTitle.Text;
+        var author = txtAuthor.Text;
+        var publisher = txtPublisher.Text;
+        var year = txtYear.Text;
+        var genre = ddlGenre.SelectedValue;
+        books.FilterBooksByAll(isbn, title, author, publisher, year, genre);
+        rptBookDisplay.DataSource = books.BookList;
+        rptBookDisplay.DataBind();
     }
 
     protected void HandlerClearSearch(object sender, EventArgs e)
@@ -87,5 +101,13 @@ public partial class BookManagement : System.Web.UI.Page
         txtPublisher.Text = "";
         txtYear.Text = "";
         ddlGenre.SelectedValue = "";
+
+        var books = new BookCollection();
+        books.FilerBookByIsbn("");
+        rptBookDisplay.DataSource = books.BookList;
+        rptBookDisplay.DataBind();
+        FillDropDown();
     }
+
+
 }

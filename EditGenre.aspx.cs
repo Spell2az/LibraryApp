@@ -9,7 +9,7 @@ public partial class EditGenre : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        txtGenreCode.Enabled = false;
         if (!Page.IsPostBack)
         {
             FillDropDown();
@@ -19,14 +19,18 @@ public partial class EditGenre : System.Web.UI.Page
     private void FillDropDown()
     {
         ddlGenre.Items.Clear();
+        txtGenreDescription.Text = "";
+        var idGen = new IdGenerator();
+
         var genreCollection = new GenreCollection();
         genreCollection.FilterGenre("");
-        ddlGenre.Items.Add(new ListItem("...new Genre"));
+        var newGenreCode = idGen.GenreId();
+        ddlGenre.Items.Add(new ListItem("...new Genre", newGenreCode));
         foreach (var genre in genreCollection.Genres)
         {
             ddlGenre.Items.Add(new ListItem(genre.Description, genre.GenreCode));
         }
-
+        txtGenreCode.Text = ddlGenre.SelectedValue;
     }
 
     
@@ -42,15 +46,12 @@ public partial class EditGenre : System.Web.UI.Page
         if (ddlGenre.SelectedIndex==0)
         {
 
-            if (!genre.Find(txtGenreCode.Text))
+            if (txtGenreDescription.Text.Trim() != "")
             {
                 genres.Add();
                 FillDropDown();
             }
-            else
-            {
-                Response.Write("This Genre Code is not available please enter different genre code");
-            }
+            
         }
         else
         {
@@ -68,8 +69,8 @@ public partial class EditGenre : System.Web.UI.Page
     {
         if (ddlGenre.SelectedIndex == 0)
         {
-            txtGenreCode.Enabled = true;
-            txtGenreCode.Text = "";
+
+            txtGenreCode.Text = ddlGenre.SelectedValue;
             txtGenreDescription.Text = "";
         }
         else

@@ -9,23 +9,32 @@ public partial class BookCopyEdit : System.Web.UI.Page
 {
     private string _copyBarcode;
     private bool _isNew;
+    private string _isbn;
     protected void Page_Load(object sender, EventArgs e)
     {
 
 
         _copyBarcode = Request.QueryString["barcode"];
         _isNew = Convert.ToBoolean(Request.QueryString["isNew"]);
+        _isbn = Request.QueryString["isbn"];
+        txtBarcode.Enabled = false;
         if (!Page.IsPostBack)
         {
             FillDropDowns();
             if (_copyBarcode != null)
             {
                 var bookCopyCollection = new BookCopyCollection();
-                txtBarcode.Enabled = false;
+                
                 if (bookCopyCollection.BookCopy.Find(_copyBarcode))
                 {
                     DisplayCopyDetails(bookCopyCollection.BookCopy);
                 }
+            }
+
+            if (_isNew)
+            {
+                var idGen = new IdGenerator();
+                txtBarcode.Text = idGen.BookCopy();
             }
         }
     }
@@ -40,12 +49,45 @@ public partial class BookCopyEdit : System.Web.UI.Page
 
     protected void HandlerSaveBookCopy(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        var copies = new BookCopyCollection();
+        var copy = copies.BookCopy;
+        var copyCheck = new BookCopy();
+       
+
+        bool isThere = copyCheck.Find(txtBarcode.Text);
+        copy.Barcode = txtBarcode.Text;
+        copy.Barcode = txtBarcode.Text;
+        copy.LoanType = ddlLoanType.SelectedValue;
+        copy.Status = ddlStatus.SelectedValue;
+        copy.Condition = ddlCondition.SelectedValue;
+        copy.CopyIsbn = _isbn;
+        
+
+        
+
+        if (_isNew && !isThere)
+        {
+            copies.Add();
+        }
+        else if (isThere && _isNew)
+        {
+            //Display Error
+            ScriptManager.RegisterStartupScript(
+                this,
+                typeof(Page),
+                "Alert",
+                "<script>alert('Barcode already exists.');</script>",
+                false);
+        }
+        else
+        {
+            copies.Update();
+        }
     }
 
     protected void HandlerCancelCopyEdit(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        Response.Redirect($"BookCopies.aspx?isbn={_isbn}");
     }
 
     private void FillDropDowns()

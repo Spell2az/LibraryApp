@@ -42,7 +42,7 @@ public class BookCopyCollection
         _dc.AddParameter("@cop_loan_type", BookCopy.LoanType);
         _dc.AddParameter("@cop_status", BookCopy.Status);
         _dc.AddParameter("@cop_condition", BookCopy.Condition);
-        _dc.AddParameter("@fk1_isbn", BookCopy.CopyIsbn);
+        
         _dc.Execute("sproc_UpdateBookCopy");
     }
 

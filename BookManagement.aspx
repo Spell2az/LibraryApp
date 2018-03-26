@@ -20,7 +20,7 @@
         <asp:TextBox runat="server" ID="txtPublisher" placeholder="Publisher"></asp:TextBox>
         <asp:TextBox runat="server" ID="txtYear" placeholder="Year"></asp:TextBox>
         <asp:Label runat="server" Text="Genre: "></asp:Label>
-        <asp:DropDownList runat="server" ID="ddlGenre" ></asp:DropDownList>
+        <asp:DropDownList AutoPostBack="True" runat="server" ID="ddlGenre" ></asp:DropDownList>
         <asp:Button runat="server" Text="Search" ID="btnSearch" OnClick="HandlerSearchBooks"/>
         <asp:Button runat="server" Text="Clear" ID="btnClear" OnClick="HandlerClearSearch"/>
         
@@ -58,9 +58,9 @@
                     <td><%# (Container.DataItem as Book).ShelfNo %></td>
                     <td><%# (Container.DataItem as Book).Edition %></td>
                     <td><%# (Container.DataItem as Book).GetGenreDescription((Container.DataItem as Book).GenreCode) %></td>
-                    <td><asp:Button CommandArgument='<%# (Container.DataItem as Book).Isbn %>' OnClick="GoToEditBook" runat="server" Text="Edit" CssClass="btn btn-primary" /> </td>
-                    <td><asp:Button CommandArgument='<%# (Container.DataItem as Book).Isbn %>' OnClick="HandlerDeleteBook" runat="server" Text="Delete" CssClass="btn btn-primary" /></td>
-                    <td><asp:Button CommandArgument='<%# (Container.DataItem as Book).Isbn %>' OnClick="GoToBookCopies" runat="server" Text="Book Copies" CssClass="btn btn-primary" /></td>
+                    <td><asp:Button CommandArgument='<%# (Container.DataItem as Book).Isbn.TrimEnd() %>' OnClick="GoToEditBook" runat="server" Text="Edit" CssClass="btn btn-primary" /> </td>
+                    <td><asp:Button CommandArgument='<%# (Container.DataItem as Book).Isbn.TrimEnd() %>' OnClick="HandlerDeleteBook" runat="server" Text="Delete" CssClass="btn btn-primary" /></td>
+                    <td><asp:Button CommandArgument='<%# (Container.DataItem as Book).Isbn.TrimEnd() %>' OnClick="GoToBookCopies" runat="server" Text="Book Copies" CssClass="btn btn-primary" /></td>
                 </tr>
             </ItemTemplate>
         </asp:Repeater>

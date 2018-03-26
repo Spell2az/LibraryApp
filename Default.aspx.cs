@@ -21,4 +21,9 @@ public partial class _Default : System.Web.UI.Page
     {
         Response.Redirect("EditGenre.aspx");
     }
+
+    protected void HandlerGoToBorrowerArea(object sender, EventArgs e)
+    {
+        Response.Redirect("BorrowerArea.aspx");
+    }
 }

@@ -81,7 +81,7 @@ public partial class BookEdit : System.Web.UI.Page
         {
             bookCollection.Add();
         }
-        else if (isThere)
+        else if (isThere && _isNew)
         {
             //Display Error
             ScriptManager.RegisterStartupScript(

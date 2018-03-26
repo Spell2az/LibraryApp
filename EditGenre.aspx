@@ -12,7 +12,7 @@
         <asp:Label runat="server" Text="Genre Code"></asp:Label>
         <asp:TextBox ID="txtGenreCode"  runat="server"></asp:TextBox>
         <asp:Label runat="server" Text="Genre Description"></asp:Label>
-        <asp:TextBox ID="txtGenreDescription" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtGenreDescription" placeholder="Enter Genre description" runat="server"></asp:TextBox>
         <asp:Button ID="btnUpdateGenre" OnClick="HanlderSaveUpdateGenre" runat="server" Text="Save" />
         <asp:Button ID="btnCancelUpdateGenre" OnClick="HanlderCancelUpdateGenre" runat="server" Text="Cancel" />
     </asp:Panel>

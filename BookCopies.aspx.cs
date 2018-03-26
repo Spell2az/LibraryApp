@@ -42,7 +42,7 @@ public partial class BookCopies : System.Web.UI.Page
 
     protected void HandlerAddBookCopy(object sender, EventArgs e)
     {
-        Response.Redirect("BookCopyEdit.aspx?isNew=true");
+        Response.Redirect($"BookCopyEdit.aspx?isNew=true&isbn={_bookIsbn}");
     }
     protected void HandlerEditBookCopy(object sender, EventArgs e)
     {
@@ -52,21 +52,21 @@ public partial class BookCopies : System.Web.UI.Page
         {
             barcode = source.CommandArgument;
         }
-        Response.Redirect($"BookCopyEdit.aspx?barcode={barcode}");
+        Response.Redirect($"BookCopyEdit.aspx?barcode={barcode}&isbn={_bookIsbn}&isNew=false");
     }
 
     protected void HandlerDeleteBookCopy(object sender, EventArgs e)
     {
         var source = sender as Button;
-        var books = new BookCollection();
+        var copies = new BookCopyCollection();
 
         if (source != null)
         {
             var barcode = source.CommandArgument;
 
-            if (books.Book.Find(barcode))
+            if (copies.BookCopy.Find(barcode))
             {
-                books.Delete(barcode);
+                copies.Delete(barcode);
                 rptBookCopy.DataBind();
             }
         }

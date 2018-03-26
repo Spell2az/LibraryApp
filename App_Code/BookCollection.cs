@@ -73,6 +73,9 @@ public class BookCollection
     public List<Book> FilterBooksByAll(string isbn, string title, string author, string publisher, string year,
         string genreCode)
     {
+        year = year.Length == 0 ? null : year;
+             
+        _dc = new DataConnection();
         _dc.AddParameter("@isbn", isbn);
         _dc.AddParameter("@bk_author", author);
         _dc.AddParameter("@bk_title", title);
