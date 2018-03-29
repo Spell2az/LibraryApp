@@ -9,7 +9,7 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["user"] = "B09001";
+        Session["user"] = "B10012";
     }
 
     protected void HandlerManageBooks(object sender, EventArgs e)

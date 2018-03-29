@@ -44,7 +44,18 @@ public class Borrower
             return null;
         }
     }
-
+    public List<Reservation> Reservations
+    {
+        get
+        {
+            if (BorrowerId != null)
+            {
+                var reservations = new ReservationCollection(BorrowerId);
+                return reservations.ReservationList;
+            }
+            return null;
+        }
+    }
 
     public Borrower()
     {
