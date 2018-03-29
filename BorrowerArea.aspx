@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:Button OnClick="HadnlerGoToDetails" runat="server" Text="View Details"/>
+    <asp:Label runat="server" ID="lblUser"></asp:Label>
+    <asp:Button OnClick="HandlerGoToDetails" runat="server" Text="Personal Details"/>
 </asp:Content>
 

@@ -23,14 +23,10 @@
         <asp:Repeater ID="rptBookDisplay" runat="server">
             <HeaderTemplate>
                 <tr>
-                    <th>Isbn</th>
+                   
                     <th>Title</th>
                     <th>Author</th>
-                    <th>Publisher</th>
-                    <th>P. Year</th>
-                    <th>Shelf No.</th>
-                    <th>Edition</th>
-                    <th>Genre</th>
+                   
                     <th> </th>             
                     
                 </tr>
@@ -40,12 +36,9 @@
                         
                     <td><%# (Container.DataItem as Book).Title %></td>
                     <td><%# (Container.DataItem as Book).Author %></td>
-                    <td><%# (Container.DataItem as Book).Publisher %></td>
-                    <td><%# (Container.DataItem as Book).PubYear %></td>
-                    <td><%# (Container.DataItem as Book).ShelfNo %></td>
-                    <td><%# (Container.DataItem as Book).Edition %></td>
-                    <td><%# (Container.DataItem as Book).GetGenreDescription((Container.DataItem as Book).GenreCode) %></td>
-                    <td><asp:Button CommandArgument='<%# (Container.DataItem as Book).Isbn.TrimEnd() %>' OnClick="HandlerViewBookInfo" runat="server" Text="View Book Details" CssClass="btn btn-primary" /> </td>
+                    
+                    <%--<td><%# (Container.DataItem as Book).GetGenreDescription((Container.DataItem as Book).GenreCode) %></td>--%>
+                    <td><asp:Button CommandArgument='<%# (Container.DataItem as Book).Isbn.TrimEnd() %>' OnClick="HandlerViewBookInfo" runat="server" Text="Check Availability" CssClass="btn btn-primary" /> </td>
                    
                 </tr>
             </ItemTemplate>

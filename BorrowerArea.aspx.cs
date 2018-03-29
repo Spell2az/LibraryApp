@@ -9,10 +9,12 @@ public partial class BorrowerArea : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        var account = new Borrower();
+        account.Find(Session["user"].ToString());
+        lblUser.Text = $"Welcome, {account.FirstName} {account.LastName}";
     }
 
-    protected void HadnlerGoToDetails(object sender, EventArgs e)
+    protected void HandlerGoToDetails(object sender, EventArgs e)
     {
         Response.Redirect("UserDetails.aspx");
     }

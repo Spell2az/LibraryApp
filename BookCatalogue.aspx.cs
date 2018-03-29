@@ -21,7 +21,15 @@ public partial class BookCatalogue : System.Web.UI.Page
 
     protected void HandlerViewBookInfo(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        var source = sender as Button;
+        string isbn = null;
+
+        if (source != null)
+        {
+            isbn = source.CommandArgument;
+        }
+
+        Response.Redirect($"BookView.aspx?isbn={isbn}");
     }
 
     private void FillDropDown()
