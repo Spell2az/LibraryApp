@@ -50,7 +50,7 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td><%# (Container.DataItem as Book).Isbn %></td>
+                        
                     <td><%# (Container.DataItem as Book).Title %></td>
                     <td><%# (Container.DataItem as Book).Author %></td>
                     <td><%# (Container.DataItem as Book).Publisher %></td>

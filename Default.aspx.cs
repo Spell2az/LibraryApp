@@ -26,4 +26,14 @@ public partial class _Default : System.Web.UI.Page
     {
         Response.Redirect("BorrowerArea.aspx");
     }
+
+    protected void HandlerViewStudentAccounts(object sender, EventArgs e)
+    {
+        Response.Redirect("BorrowerAccounts.aspx");
+    }
+
+    protected void HandlerViewBookCatalogue(object sender, EventArgs e)
+    {
+        Response.Redirect("BookCatalogue.aspx");
+    }
 }

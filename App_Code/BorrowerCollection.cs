@@ -42,4 +42,22 @@ public class BorrowerCollection
         _dc.Execute("sproc_FilterBorrowerById");
 
     }
+
+
+    public void Update()
+    {
+        _dc = new DataConnection();
+        _dc.AddParameter("@bor_id", Borrower.BorrowerId);
+        _dc.AddParameter("@fk1_bor_type_id", Borrower.BorrowerType);
+        _dc.AddParameter("@bor_firstname", Borrower.FirstName);
+        _dc.AddParameter("@bor_surname", Borrower.LastName);
+        _dc.AddParameter("@bor_address_1", Borrower.Address1);
+        _dc.AddParameter("@bor_address_2", Borrower.Address2);
+        _dc.AddParameter("@bor_address_3", Borrower.Address3);
+        _dc.AddParameter("@bor_tel", Borrower.TelNumber);
+        _dc.AddParameter("@bor_email", Borrower.Email);
+        _dc.AddParameter("@bor_status", Borrower.Status);
+        _dc.Execute("sproc_UpdateBorrower");
+    }
+
 }

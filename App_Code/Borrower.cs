@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -12,12 +13,38 @@ public class Borrower
     public string BorrowerType { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string  Address1 { get; set; }
+    public string Address1 { get; set; }
     public string Address2 { get; set; }
     public string Address3 { get; set; }
     public string TelNumber { get; set; }
     public string Email { get; set; }
     public string Status { get; set; }
+
+    public List<Loan> Loans
+    {
+        get
+        {
+            if (BorrowerId!= null)
+            {
+                var loans = new LoanCollection(BorrowerId);
+                return loans.LoanList;
+            }
+            return null;
+        }
+    }
+    public List<Fine> Fines
+    {
+        get
+        {
+            if (BorrowerId != null)
+            {
+                var fines = new FineCollection(BorrowerId);
+                return fines.FineList;
+            }
+            return null;
+        }
+    }
+
 
     public Borrower()
     {
@@ -48,4 +75,21 @@ public class Borrower
         Status = row["bor_status"].ToString();
         return true;
     }
+
+    public string GetBorrowerTypeDescription(string borrowerType)
+    {
+        var dc = new DataConnection();
+        dc.AddParameter("@bor_type_id", borrowerType);
+        dc.Execute("sproc_GetBorrowerDescriptionByTypeId");
+
+        if (dc.Count != 1) return "";
+
+        return dc.DataTable.Rows[0]["bor_type_name"].ToString();
+    }
+    //public DataTable GetAllUserDetails(string borrowerId)
+    //{
+    //    var dc = new DataConnection();
+    //    dc.AddParameter("@bor_id", borrowerId);
+    //    dc.Execute("sproc_Get")
+    //}
 }

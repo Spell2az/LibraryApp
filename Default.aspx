@@ -7,6 +7,8 @@
         <asp:Button ID="btnEditGenre" OnClick="HandlerEditGenre" runat="server" Text="Edit Genres"/>
         <asp:Button ID="btnGoToBookManagement" OnClick="HandlerManageBooks" runat="server" Text="Book Management"/>
         <asp:Button OnClick="HandlerGoToBorrowerArea" runat="server"/>
+        <asp:Button runat="server" OnClick="HandlerViewStudentAccounts" Text="Student Accounts"/>
+        <asp:Button runat="server" OnClick="HandlerViewBookCatalogue" Text="BookCatalogue"/>
     </div>
 </asp:Content>
 
