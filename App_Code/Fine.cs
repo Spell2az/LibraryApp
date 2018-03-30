@@ -41,4 +41,11 @@ public class Fine
         return true;
 
     }
+
+    public string GetBookTitle(string loanId)
+    {
+        var loan = new Loan();
+        loan.Find(loanId);
+        return loan.GetBookTitle(loan.CopyBarcode);
+    }
 }

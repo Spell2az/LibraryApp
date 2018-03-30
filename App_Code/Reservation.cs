@@ -37,4 +37,15 @@ public class Reservation
 
         return true;
     }
+
+    public string GetBookTitle(string isbn)
+    {
+        var dc = new DataConnection();
+        dc.AddParameter("@isbn", isbn);
+        dc.Execute("sproc_GetBookTitleByIsbn");
+
+        if (dc.Count != 1) return "";
+
+        return dc.DataTable.Rows[0]["bk_title"].ToString();
+    }
 }

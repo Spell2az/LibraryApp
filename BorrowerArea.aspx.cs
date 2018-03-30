@@ -17,10 +17,41 @@ public partial class BorrowerArea : System.Web.UI.Page
         lblFines.Text = account.Fines.FindAll(fine => fine.FineStatus.Trim() == "DUE").Count.ToString();
         lblResrvation.Text = account.Reservations.FindAll(reservation => reservation.ClearedDate == null).Count
             .ToString();
+
+        rptCurrentLoans.DataSource = account.Loans.FindAll(loan => loan.LoanReturnDate == null);
+        rptCurrentLoans.DataBind();
+
+        rptHistoryLoans.DataSource = account.Loans.FindAll(loan => loan.LoanReturnDate != null);
+        rptHistoryLoans.DataBind();
+
+        rptCurrentReservations.DataSource = account.Reservations.FindAll(reservation => reservation.ClearedDate == null);
+        rptCurrentReservations.DataBind();
+
+        rptHistoryReservations.DataSource = account.Reservations.FindAll(reservation => reservation.ClearedDate != null);
+        rptHistoryReservations.DataBind();
+
+        rptCurrentFines.DataSource = account.Fines.FindAll(fine => fine.FineStatus.Trim() == "DUE");
+        rptCurrentFines.DataBind();
+
+        var finesWithPayments = new FineCollection(account.BorrowerId);
+        rptHistoryFines.DataSource = finesWithPayments.FinesWithPayments();
+        rptHistoryFines.DataBind();
+
     }
 
     protected void HandlerGoToDetails(object sender, EventArgs e)
     {
         Response.Redirect("UserDetails.aspx");
+    }
+
+    protected void HandlerGoToPayment(object sender, EventArgs e)
+    {
+        var source = sender as Button;
+        string fineId = null;
+        if (source != null)
+        {
+            fineId = source.CommandArgument;
+        }
+        Response.Redirect($"FinePayment.aspx?fineId={fineId.Trim()}");
     }
 }

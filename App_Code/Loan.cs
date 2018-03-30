@@ -46,4 +46,14 @@ public class Loan
         return true;
     }
 
+    public string GetBookTitle(string barcode)
+    {
+        var dc = new DataConnection();
+        dc.AddParameter("@cop_barcode", barcode);
+        dc.Execute("sproc_GetBookTitleByBarcode");
+
+        if (dc.Count != 1) return "";
+
+        return dc.DataTable.Rows[0]["bk_title"].ToString();
+    }
 }
