@@ -18,6 +18,11 @@ public class BookCopyCollection
         // TODO: Add constructor logic here
         //
     }
+
+    public BookCopyCollection(string isbn)
+    {
+        FilterCopiesByIsbn(isbn);
+    }
     public List<BookCopy> BookCopies => (from DataRow row in _dc.DataTable.Rows
         select new BookCopy
         {

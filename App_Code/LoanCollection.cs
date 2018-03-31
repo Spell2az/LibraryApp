@@ -39,4 +39,11 @@ public class LoanCollection
         _dc.AddParameter("@bor_id", borrowerId);
         _dc.Execute("sproc_GetLoansByBorrower");
     }
+
+    public void FilterActiveLoansByIsbn(string isbn)
+    {
+        _dc = new DataConnection();
+        _dc.AddParameter("@isbn", isbn);
+        _dc.Execute("sproc_GetActiveLoansByIsbn");
+    }
 }

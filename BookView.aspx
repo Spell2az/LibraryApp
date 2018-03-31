@@ -30,13 +30,41 @@
     <br />
     <br />
     <div class="row flex-column">
-        <h3>Availability</h3>
-        <p>Not Available</p>
+        <p>
+            <a class="" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <asp:Label runat="server" ID="lblAvailableCopy"></asp:Label>
+            </a>
+           
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <table class="table">
+                <asp:Repeater ID="rptBookCopies" runat="server">
+                    <HeaderTemplate>
+                        <tr>
+                            <td>Barcode</td>
+                            <td>Shelf</td>
+                            <td>Loan type</td>
+                            <td>Status</td>
+                        </tr>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <tr>
+                            <td><%# Eval("Barcode") %></td>
+                            <td><%# Eval("Shelf") %></td>
+                            <td><%# Eval("LoanType") %></td>
+                            <td><%# Eval("Status") %></td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+                </table>
+            </div>
+        </div>
     </div>
     <br />
     <br />
     <div class="row">
-        <asp:Button runat="server" Text="Reserve"/>
+        <asp:Button runat="server" ID="btnReserve" Text="Reserve"/>
     </div>
 </asp:Content>
 
