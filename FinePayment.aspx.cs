@@ -12,7 +12,7 @@ public partial class FinePayment : System.Web.UI.Page
     {
         _fineId = Request.QueryString["fineId"];
         var fine = new Fine();
-        if (string.IsNullOrEmpty(_fineId))
+        if (!string.IsNullOrEmpty(_fineId))
         {
             fine.Find(_fineId);
             lblTotalAmount.Text = $"Total: {fine.FineAmount.ToString("C")}";

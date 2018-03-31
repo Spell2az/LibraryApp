@@ -11,7 +11,7 @@
         <div class="payment-card-worldpay">
         
         <div>
-            <asp:Label CssClass="payment-items-pos text-center" runat="server" Text="Total: 90" ID="lblTotalAmount"></asp:Label>
+            <asp:Label CssClass="payment-items-pos text-center" runat="server" ID="lblTotalAmount"></asp:Label>
             
         </div>
             <div>

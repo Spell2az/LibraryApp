@@ -49,6 +49,6 @@ public class PaymentCollection
         _dc.AddParameter("@pmt_amount", Payment.Amount);
         _dc.AddParameter("@fk1_bor_id", Payment.BorrowerId);
         _dc.AddParameter("@fk2_fine_id", Payment.FineId);
-        _dc.Execute("sproc_AddPayment");
+        _dc.Execute("sproc_TRANS_AddPaymentUpdateFine");
     }
 }
