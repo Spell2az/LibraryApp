@@ -18,12 +18,12 @@
         <div class="tab-content" style="margin: 0 auto; max-width: 1160px;" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                
-                <div class="row justify-content-center">
-                    <asp:TextBox runat="server" ID="txtBorrowerId" placeholder="Borrower ID"></asp:TextBox>
-                    <asp:TextBox runat="server" ID="txtLastName" placeholder="Last Name"></asp:TextBox>
+                <div class="row justify-content-center m-3">
+                    <asp:TextBox runat="server" ID="txtBorrowerId" CssClass=" m-3" placeholder="Borrower ID"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtLastName" CssClass=" m-3" placeholder="Last Name"></asp:TextBox>
                     
-                    <asp:Button runat="server" Text="Search"/>
-                    <asp:Button runat="server" Text="Clear"/>
+                    <asp:Button runat="server" CssClass="btn btn-primary m-3" Text="Search"/>
+                    <asp:Button runat="server" CssClass="btn btn-primary m-3" Text="Clear"/>
                 </div>
                 <table class="table">
                     <asp:Repeater ID="rptAllAccounts" runat="server">
@@ -54,8 +54,8 @@
                     </asp:Repeater>
                 </table>
             </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <table class="table">
+            <div class="tab-pane fade m-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <table class="table mt-5">
                     <asp:Repeater ID="rptLiveAccounts" runat="server">
                         <HeaderTemplate>
                             <tr>
@@ -84,8 +84,8 @@
                     </asp:Repeater>
                 </table>
             </div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">  
-            <table class="table">
+            <div class="tab-pane fade m-4" id="contact" role="tabpanel" aria-labelledby="contact-tab">  
+            <table class="table mt-5">
             <asp:Repeater ID="rptSuspendedAccounts" runat="server">
             <HeaderTemplate>
                     <tr>

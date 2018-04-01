@@ -13,6 +13,19 @@ public partial class MasterPage : System.Web.UI.MasterPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        var userType = Request.QueryString["user"];
 
+        switch (userType)
+        {
+            case "manager":
+                menuManager.Visible = true;
+                break;
+            case "staff":
+                //menuStaff.Visible = true;
+                break;
+            default:
+                menuBorrower.Visible = true;
+                break;
+        }
     }
 }

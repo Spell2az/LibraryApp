@@ -1,9 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="BookView.aspx.cs" Inherits="BookView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="row flex-column">
+    
+   
+        <div class="row flex-column">
         <h3>Book Details: </h3>
         <asp:Label runat="server" Text="Isbn"></asp:Label>
         <asp:Label runat="server" ID="lblIsbn"></asp:Label>
@@ -63,8 +67,29 @@
     </div>
     <br />
     <br />
-    <div class="row">
-        <asp:Button runat="server" ID="btnReserve" Text="Reserve"/>
+    <div class="row" id="messagePlaceholder">
+        <asp:Button runat="server" ID="btnReserve" OnClick="HandlerReserveBook"/>
     </div>
+    <div id="success" class="alert alert-success reservation-alert">
+        <h4 class="alert-heading">Reservation placed!</h4>
+    </div>
+    <script type="text/javascript">
+        function showMe(bool) {
+            if (bool) {
+                setTimeout(() => { $('#success').addClass("alert-up"); }, 500)
+                setTimeout(() => {
+                    $('#success').removeClass("alert-up");
+                }, 1500)
+                setTimeout(() => {window.location.href = 'BookCatalogue.aspx'},2000)
+            }
+            else {
+                $('#error').show();
+                setTimeout(() => {
+                    $('#error').hide('fadeOut', 500);
+                }, 3500)
+            }
+        }
+    </script>
+      
 </asp:Content>
 

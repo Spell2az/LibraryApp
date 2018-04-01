@@ -16,3 +16,103 @@
     display: block;
     margin: 0 auto;
 }
+
+
+.reservation-alert {
+    position: fixed;
+    bottom: -150px;
+    height: 120px;
+    width: 800px;
+    transition: all .4s;
+}
+
+.alert-up {
+    bottom: 0px;
+    transition: all .4s;
+}
+
+.nav-logo {
+    width: 200px;
+    height: auto;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+a {
+    color: #ffca60;
+}
+
+.modal-size {
+    height: 320px;
+    width: 500px;
+}
+
+.icon-login {
+    font-size: 20px;
+    
+
+}
+.corusel-title {
+    color: white;
+    outline: black;
+    font-size: 40px;
+    position: absolute;
+    width: 120%;
+    left: -2%;
+    display: block;
+    top: 10%;
+    padding: 10px 50px 10px 50px;
+    background: #00469C;
+    /*transform: translate(-50%, -50%);*/
+}
+
+.feature-item {
+    width: 230px;
+}
+
+.feature-heading {
+    color: #00469c;
+    text-transform: uppercase;
+}
+
+.feature-icon {
+    font-size: 60px;
+    color: #00469c;
+}
+body,html,.container  {
+    min-height: 100%;
+}
+.container {
+    min-height: 100vh;
+    position: relative;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    background: #00469c;
+    width: 100%;
+    z-index: 10;
+    height: 60px;
+    margin-bottom: -20px;
+
+}
+
+.footer-ul > * {
+    display: inline-block;
+    list-style: none;
+    color: #f0f2f5;
+    padding: 5px 10px 5px 10px;
+    margin: 0 !important;
+}
+
+.footer-icon {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.spacer {
+    flex-grow: 4;
+}
+

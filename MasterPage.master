@@ -4,22 +4,90 @@
 
 <html>
 <head runat="server">
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=0)">
+
+    <meta http-equiv="Page-Exit" content="blendTrans(Duration=0)">
     <title></title>
     <asp:ContentPlaceHolder id="head" runat="server">
         
     </asp:ContentPlaceHolder>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="Styles/CSS/custom-css-bootstrap-magic-2018-04-01.css" rel="stylesheet" />
+    <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">--%>
+    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
     <link href="Styles/CSS/main.css" rel="stylesheet" />
     <link href="Styles/CSS/style.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
+        
     <form id="form1" runat="server">
+  <asp:ScriptManager runat="server"></asp:ScriptManager>
+        <asp:Panel ID="menuBorrower" Visible="False" runat="server" class="navbar navbar-dark bg-primary navbar-expand-lg mb-5">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="ml-4 navbar-brand" href="#">
+                <img alt="Library logo" class="nav-logo" src="Img/logo.png" />
+            </a>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="BorrowerArea.aspx">Account <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="UserDetails.aspx">Personal Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="BookCatalogue.aspx">Book Catalogue</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Help</a>
+                    </li>
+                </ul>
+                <button class="btn btn-outline-warning nav-item"  onclick="window.location.href='default.html'" type="button">
+                    Logout
+                </button>
+
+            </div>
+        </asp:Panel>    
+        <asp:Panel ID="menuManager" Visible="False" runat="server" class="navbar navbar-dark bg-primary navbar-expand-lg mb-5">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="ml-4 navbar-brand" href="#">
+                <img alt="Library logo" class="nav-logo" src="Img/logo.png" />
+            </a>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="BookManagement.aspx">Book Management<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="BorrowerAccounts.aspx">Manage User Accounts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Help</a>
+                    </li>
+                </ul>
+                <button class="btn btn-outline-warning nav-item" onclick="window.location.href='default.html'" type="button">
+                    Logout
+                </button>
+
+            </div>
+        </asp:Panel>
+            
     <div>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
     </div>
+          
     </form>
     </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -39,4 +39,13 @@ public class ReservationCollection
         _dc.AddParameter("@bor_id", borrowerId);
         _dc.Execute("sproc_GetReservationsByBorrower");
     }
+
+    public void AddReservation()
+    {
+        _dc = new DataConnection();
+        _dc.AddParameter("@res_id", Reservation.ReservationId);
+        _dc.AddParameter("@fk2_bor_id", Reservation.BorrowerId);
+        _dc.AddParameter("@fk1_isbn", Reservation.ReservedIsbn);
+        _dc.Execute("sproc_AddReservation");
+    }
 }

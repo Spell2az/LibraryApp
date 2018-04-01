@@ -3,7 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="row flex-column">
+    <div class="text-center mb-3">
+        <h2>Personal Details</h2>
+    </div>
+    <div class="row flex-column w-25 border p-3" style="margin: 0 auto;">
         <asp:Label runat="server" Text="Id: "></asp:Label>
         <asp:TextBox runat="server" ID="txtUserId"></asp:TextBox>
         <br />
@@ -30,9 +33,9 @@
        
         
     </div>
-    <div class="row">
-        <asp:Button ID="btnUpdate" OnClick="HandlerSaveDetails" runat="server" Text="Save"/>
-        <asp:Button ID="btnCancel" OnClick="HandlerCancelDetailsView" runat="server" Text="Cancel"/>
+    <div class="row justify-content-center">
+        <asp:Button ID="btnUpdate" OnClick="HandlerSaveDetails" CssClass="m-4 btn btn-primary" runat="server" Text="Save"/>
+        <asp:Button ID="btnCancel" OnClick="HandlerCancelDetailsView" CssClass="m-4 btn btn-primary" runat="server" Text="Cancel"/>
     </div>
 </asp:Content>
 

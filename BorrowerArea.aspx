@@ -17,7 +17,7 @@
         <asp:Label runat="server" Visible="True" Text="Fines: "></asp:Label>
         <asp:Label runat="server" ID="lblFines"></asp:Label>
     </div>
-    <div>
+    <div class="mt-3">
         <ul class="nav nav-tabs" id="mainTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="loans-tab" data-toggle="tab" href="#loans" role="tab" aria-controls="loans" aria-selected="true">Loans</a>
@@ -34,11 +34,11 @@
 <%--------------------------------------LOANS-----------------------------------------%>
 
             <div class="tab-pane fade show active" id="loans" role="tabpanel" aria-labelledby="loans-tab">
-                <ul class="nav nav-pills mb-3" id="pills-loans-tab" role="tablist">
-                    <li class="nav-item">
+                <ul class="nav nav-pills mb-3 mt-3" id="pills-loans-tab" role="tablist">
+                    <li class="nav-item mr-3 ml-3">
                         <a class="nav-link active" id="pills-current-loans-tab" data-toggle="pill" href="#pills-current-loans" role="tab" aria-controls="pills-current-loans" aria-selected="true">Current</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mr-3 ml-3">
                         <a class="nav-link" id="pills-history-loans-tab" data-toggle="pill" href="#pills-history-loans" role="tab" aria-controls="pills-history-loans" aria-selected="false">History</a>
                     </li>
                 </ul>
@@ -67,7 +67,7 @@
                                                     : (int)((Container.DataItem as Loan).LoanDueDate - DateTime.Today).TotalDays > 0 
                                                     ? $"{(int)((Container.DataItem as Loan).LoanDueDate - DateTime.Today).TotalDays} day(s)" 
                                                     : $"{-(int)((Container.DataItem as Loan).LoanDueDate - DateTime.Today).TotalDays} day(s) Overdue" %></td>
-                                        <td><asp:Button runat="server" Text="Extend"/> </td>
+                                        <td><asp:Button runat="server" CssClass="btn btn-outline-warning" Text="Extend"/> </td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
@@ -104,11 +104,11 @@
 <%--------------------------------------RESERVATIONS-----------------------------------------%>
 
             <div class="tab-pane fade" id="reservations" role="tabpanel" aria-labelledby="reservations-tab">
-                <ul class="nav nav-pills mb-3" id="pills-reservations-tab" role="tablist">
-                    <li class="nav-item">
+                <ul class="nav nav-pills mb-3 mt-3" id="pills-reservations-tab" role="tablist">
+                    <li class="nav-item  mr-3 ml-3">
                         <a class="nav-link active" id="pills-current-reservations-tab" data-toggle="pill" href="#pills-current-reservations" role="tab" aria-controls="pills-current-reservations" aria-selected="true">Current</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item  mr-3 ml-3">
                         <a class="nav-link" id="pills-history-reservations-tab" data-toggle="pill" href="#pills-history-reservations" role="tab" aria-controls="pills-history-reservations" aria-selected="false">History</a>
                     </li>
                 </ul>
@@ -131,7 +131,7 @@
                                         <td><%# (Container.DataItem as Reservation).ReservationDate %></td>
                                         <td><%# (Container.DataItem as Reservation).ReservationDate.AddDays(3) %></td>
                                         
-                                        <td><asp:Button runat="server" Text="Extend"/> </td>
+                                        <td><asp:Button runat="server"  Text="Extend"/> </td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
@@ -155,7 +155,7 @@
                                         <td><%# (Container.DataItem as Reservation).ReservationDate %></td>
                                         <td><%# (Container.DataItem as Reservation).ClearedDate %></td>
                                         
-                                        <td><asp:Button runat="server" Text="Extend"/> </td>
+                                        
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
@@ -169,11 +169,11 @@
             
 
             <div class="tab-pane fade" id="fines" role="tabpanel" aria-labelledby="fines-tab">
-                <ul class="nav nav-pills mb-3" id="pills-fines-tab" role="tablist">
-                    <li class="nav-item">
+                <ul class="nav nav-pills mb-3 mt-3" id="pills-fines-tab" role="tablist">
+                    <li class="nav-item mr-3 ml-3">
                         <a class="nav-link active" id="pills-current-fines-tab" data-toggle="pill" href="#pills-current-fines" role="tab" aria-controls="pills-current-fines" aria-selected="true">Current</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mr-3 ml-3">
                         <a class="nav-link" id="pills-history-fines-tab" data-toggle="pill" href="#pills-history-fines" role="tab" aria-controls="pills-history-fines" aria-selected="false">History</a>
                     </li>
                 </ul>

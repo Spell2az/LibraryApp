@@ -4,13 +4,187 @@
     <title></title>
     <meta charset="utf-8" />
 </head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="Styles/CSS/custom-css-bootstrap-magic-2018-04-01.css" rel="stylesheet" />
 
+<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link href="Styles/CSS/style.css" rel="stylesheet" />
 <body>
-    
-    
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <div class="container">
+        <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="ml-4 navbar-brand" href="#">
+                <img class="nav-logo" src="Img/logo.png" />
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Help</a>
+                    </li>
+                </ul>
+                <button type="button" class="btn btn-primary nav-item" data-toggle="modal" data-target="#exampleModalCenter">
+                    <i class="ion-android-person icon-login mr-2"></i>Login
+                </button>
+
+            </div>
+        </nav>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body modal-size">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Borrowers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Staff</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Manager</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <form class="p-4" id="borrowerForm" method="post" action="Handler.ashx">
+                                    <div class="form-group">
+                                        <label for="exampleDropdownFormEmail2">Email address</label>
+                                        <input type="email" class="form-control" name="borrowerEmail" placeholder="email@example.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleDropdownFormPassword2">Personal ID</label>
+                                        <input type="password" class="form-control" name="borrowerId" placeholder="ID">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-lg btn-outline-primary">Sign in</button>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="text-center mt-5">
+                                    <h3>Are you Staff?</h3>
+                                    <button class="btn btn-lg btn-outline-primary m-3"   onclick="window.location.href ='default.aspx?user=staff'">Yes</button>
+                                    <button class="btn btn-lg btn-outline-primary m-3"  onclick="window.location.href ='default.html'">No</button>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                <div class="text-center mt-5">
+                                    <h3>Are you library Manager?</h3>
+                                    <button class="btn btn-lg btn-outline-primary m-3"  onclick="window.location.href ='default.aspx?user=manager'">Yes</button>
+                                    <button class="btn btn-lg btn-outline-primary m-3" onclick="window.location.href ='default.html'">No</button>
+                                </div>
+                               
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <section class="row">
+            <aside class="ml-4 mt-4 col-3">
+                <a class="twitter-timeline" data-width="250" data-height="500" href="https://twitter.com/dmuleicester?ref_src=twsrc%5Etfw">Tweets by dmuleicester</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </aside>
+            <article class="ml-5 mt-3 col-8">
+                <div id="carouselExampleIndicators" class="carousel " data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <h2 class="corusel-title">Welcome to Q.A.L. University Library</h2>
+                            <img class="d-block w-100" src="/Img/lib_1.png" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <h2 class="corusel-title">Extensive selection of books</h2>
+                            <img class="d-block w-100" src="/Img/lib_2.png" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <h2 class="corusel-title">Quiet study spaces available</h2>
+                            <img class="d-block w-100" src="/Img/photo-1488998527040-85054a85150e.jpg" alt="Third slide">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </article>
+        </section>
+        <section>
+            <div class="mt-5 mb-5 text-center">
+
+            </div>
+            <div class="row justify-content-around">
+                <div class="feature-item text-center">
+                    <i class="ion-ios-people feature-icon"> </i>
+                    <h5 class="feature-heading ">Collaboration space</h5>
+
+                </div>
+
+                <div class="feature-item text-center">
+                    <i class="ion-android-desktop feature-icon"> </i>
+                    <h5 class="feature-heading ">Fully Equipped Computer Rooms</h5>
+
+                </div>
+                <div class="feature-item text-center">
+                    <i class="ion-printer feature-icon"> </i>
+                    <h5 class="feature-heading ">Printing Services</h5>
+
+                </div>
+            </div>
+            <div class="row mt-2 justify-content-around">
+                <div class="feature-item text-center">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+                </div>
+                <div class="feature-item text-center">
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+                </div>
+                <div class="feature-item text-center">
+                    <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam?</p>
+                </div>
+            </div>
+        </section>
+        <footer class="footer-ul row align-items-center">
+
+
+            <p class="pl-5">Connect with QALU Libary : </p>
+            <i class="ion-social-twitter-outline footer-icon"></i>
+            <i class="ion-social-facebook-outline footer-icon"></i>
+            <i class="ion-social-rss-outline footer-icon"></i>
+            <div class="spacer"></div>
+            <p class="pl-5 "> © 2018 Martin Kovac for IMAT1401 Information Systems Development  </p>
+
+
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

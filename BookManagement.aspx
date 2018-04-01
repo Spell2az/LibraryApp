@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <%-- Search section markup --%>
+    
     <div class="row">
         <label></label>
         <asp:TextBox runat="server"></asp:TextBox>
@@ -13,6 +14,8 @@
         <asp:Button runat="server" />
       
     </div>
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
     <div class="row justify-content-center search-box-row m-2">
         <asp:TextBox runat="server" ID="txtIsbn" placeholder="Isbn"></asp:TextBox>
         <asp:TextBox runat="server" ID="txtTitle" placeholder="Title"></asp:TextBox>
@@ -26,7 +29,7 @@
         
     </div>
     <div class="row justify-content-center">
-        <asp:Button runat="server" Text="Add new Book" ID="btnAddNewBook" OnClick="HandlerAddNewBook"/>
+        <asp:Button runat="server"  Text="Add new Book" ID="btnAddNewBook" OnClick="HandlerAddNewBook"/>
     </div>
     <%-- Dispaly section markup --%>
     <div class="row justify-content-center">
@@ -66,5 +69,7 @@
         </asp:Repeater>
         </table>
     </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
 

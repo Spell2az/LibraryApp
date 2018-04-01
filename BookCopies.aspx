@@ -27,8 +27,8 @@
            
         </tr>
     </table>
-    <div class="row justify-content-center">
-        <asp:Button runat="server" Text="Add Copy" OnClick="HandlerAddBookCopy"/>
+    <div class="row justify-content-center m-5">
+        <asp:Button CssClass="btn btn-primary" runat="server" Text="Add Copy" OnClick="HandlerAddBookCopy"/>
     </div>
     <table class="table">
     <asp:Repeater ID="rptBookCopy" runat="server">
@@ -58,10 +58,10 @@
                 <%# (Container.DataItem as BookCopy).Condition %>
             </td>
             <td>
-                <asp:Button CommandArgument='<%# (Container.DataItem as BookCopy).Barcode %>' OnClick="HandlerEditBookCopy" runat="server" Text="Edit"/>
+                <asp:Button CommandArgument='<%# (Container.DataItem as BookCopy).Barcode %>' CssClass="btn btn-warning" OnClick="HandlerEditBookCopy" runat="server" Text="Edit"/>
             </td>
             <td>
-                <asp:Button CommandArgument='<%# (Container.DataItem as BookCopy).Barcode %>' OnClick="HandlerDeleteBookCopy" runat="server" Text="Delete"/>
+                <asp:Button CommandArgument='<%# (Container.DataItem as BookCopy).Barcode %>' CssClass="btn btn-danger" OnClick="HandlerDeleteBookCopy" runat="server" Text="Delete"/>
             </td>
             </tr>
         </ItemTemplate>
