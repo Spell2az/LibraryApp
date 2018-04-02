@@ -9,7 +9,26 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["user"] = "B09001";
+
+
+         var userType = Request.QueryString["user"];
+        Session["user"] = userType;
+        switch (userType)
+        {
+            case "manager":
+                Response.Redirect("BookManagement.aspx");
+                break;
+            case "staff":
+                Response.Redirect("BookCatalogue.aspx");
+                break;
+            case "borrower":
+                Response.Redirect("BookCatalogue.aspx");
+                break;
+            default:
+                Response.Redirect("Default.aspx");
+                break;
+            }
+       
     }
 
     protected void HandlerManageBooks(object sender, EventArgs e)
@@ -17,10 +36,7 @@ public partial class _Default : System.Web.UI.Page
         Response.Redirect("BookManagement.aspx");
     }
 
-    protected void HandlerEditGenre(object sender, EventArgs e)
-    {
-        Response.Redirect("EditGenre.aspx");
-    }
+    
 
     protected void HandlerGoToBorrowerArea(object sender, EventArgs e)
     {

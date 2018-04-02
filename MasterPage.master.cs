@@ -9,11 +9,17 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void PreInit(object sender, EventArgs e)
     {
-        //update fines
+        //update 
+       
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        var userType = Request.QueryString["user"];
+       
+          // var userType = Request.QueryString["user"];
+        var userType= Session["user"].ToString();
+     
+
+
 
         switch (userType)
         {
@@ -21,11 +27,18 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 menuManager.Visible = true;
                 break;
             case "staff":
-                //menuStaff.Visible = true;
+                menuStaff.Visible = true;
                 break;
             default:
                 menuBorrower.Visible = true;
                 break;
         }
+    }
+
+
+    protected void HanlerLogout(object sender, EventArgs e)
+    {
+      
+        Response.Redirect("Default.html");
     }
 }

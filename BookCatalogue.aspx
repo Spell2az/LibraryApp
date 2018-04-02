@@ -4,11 +4,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
-    <div class="row justify-content-center search-box-row m-4 ">
-        <div class="col-4">
-        <asp:TextBox runat="server" CssClass="mb-2" ID="txtIsbn" placeholder="Isbn"></asp:TextBox>
-        <asp:TextBox runat="server" CssClass="mb-2" ID="txtTitle" placeholder="Title"></asp:TextBox>
-        <asp:TextBox runat="server" CssClass="mb-2" ID="txtAuthor" placeholder="Author"></asp:TextBox>
+    <div class="row justify-content-center m-4 ">
+        <div class="col-4 row flex-column align-items-end mr-3 ">
+        <asp:TextBox runat="server" CssClass="w-50 mb-2" ID="txtIsbn" placeholder="Isbn"></asp:TextBox>
+        <asp:TextBox runat="server" CssClass="w-50 mb-2" ID="txtTitle" placeholder="Title"></asp:TextBox>
+        <asp:TextBox runat="server" CssClass="w-50 mb-2" ID="txtAuthor" placeholder="Author"></asp:TextBox>
         </div>
     <div class="col-4 row flex-column">
         <asp:TextBox runat="server" CssClass="w-50 mb-2" ID="txtPublisher" placeholder="Publisher"></asp:TextBox>
@@ -23,7 +23,7 @@
         <asp:Button runat="server" Text="Clear" ID="btnClear"  CssClass="btn btn-primary m-4"  OnClick="HandlerClearSearch"/>
     </div>
     <div class="row justify-content-center w-75" style="margin: 0 auto">
-        <table class="table" style="max-width: 1400px;">
+        <table class="table m-5" style="max-width: 1400px;">
             
         <asp:Repeater ID="rptBookDisplay" runat="server">
             <HeaderTemplate>

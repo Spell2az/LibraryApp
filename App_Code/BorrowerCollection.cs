@@ -60,4 +60,16 @@ public class BorrowerCollection
         _dc.Execute("sproc_UpdateBorrower");
     }
 
+    public void FilterByFirstAndLastNameAndId(string borrowerId, string firstName, string lastName)
+    {
+        _dc = new DataConnection();
+        //firstName = "" == firstName ? "" : firstName.Trim();
+        //lastName = "" == lastName ? "" : lastName.Trim();
+        //borrowerId = "" == borrowerId ? "" : borrowerId.Trim();
+        //var fullName = firstName + " " + lastName;
+        _dc.AddParameter("@fullName", firstName + " " + lastName);
+        _dc.AddParameter("@bor_id", borrowerId);
+        _dc.Execute("sproc_FilterByFirstAndLastNameAndId");
+    }
+
 }

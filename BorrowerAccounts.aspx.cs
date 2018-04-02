@@ -34,4 +34,20 @@ public partial class BorrowerAccounts : System.Web.UI.Page
         }
         Response.Redirect($"BorrowerSuspendAccountView.aspx?borrowerId={borrowerId}");
     }
+
+    protected void HandlerSearchStudents(object sender, EventArgs e)
+    {
+        var borrowers = new BorrowerCollection();
+        borrowers.FilterByFirstAndLastNameAndId(txtBorrowerId.Text,txtFirstName.Text,txtLastName.Text);
+        rptAllAccounts.DataSource = borrowers.BorrowerList;
+        rptAllAccounts.DataBind();
+    }
+
+    protected void HandlerClearSearchStudents(object sender, EventArgs e)
+    {
+        var borrowers = new BorrowerCollection();
+        borrowers.FilterBorrowerById("");
+        rptAllAccounts.DataSource = borrowers.BorrowerList;
+        rptAllAccounts.DataBind();
+    }
 }

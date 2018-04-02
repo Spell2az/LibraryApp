@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    
+   
         <ul class="nav nav-tabs" style="margin: 0 auto; max-width: 1160px;" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">All Students</a>
@@ -15,17 +15,21 @@
                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Suspended</a>
             </li>
         </ul>
+     
         <div class="tab-content" style="margin: 0 auto; max-width: 1160px;" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                
                 <div class="row justify-content-center m-3">
-                    <asp:TextBox runat="server" ID="txtBorrowerId" CssClass=" m-3" placeholder="Borrower ID"></asp:TextBox>
+                    <asp:TextBox runat="server" AutoPostBack="True" ID="txtBorrowerId" CssClass=" m-3" placeholder="Borrower ID"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtFirstName" CssClass=" m-3" placeholder="First Name"></asp:TextBox>
                     <asp:TextBox runat="server" ID="txtLastName" CssClass=" m-3" placeholder="Last Name"></asp:TextBox>
                     
-                    <asp:Button runat="server" CssClass="btn btn-primary m-3" Text="Search"/>
-                    <asp:Button runat="server" CssClass="btn btn-primary m-3" Text="Clear"/>
+                    <asp:Button runat="server" ID="btnSearch" OnClick="HandlerSearchStudents" CssClass="btn btn-primary m-3" Text="Search"/>
+                    <asp:Button runat="server"  ID="btnClear" OnClick="HandlerClearSearchStudents" CssClass="btn btn-primary m-3" Text="Clear"/>
                 </div>
-                <table class="table">
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                <table class="table m-5">
                     <asp:Repeater ID="rptAllAccounts" runat="server">
                         <HeaderTemplate>
                             <tr>
@@ -43,7 +47,7 @@
                                 <td><%# (Container.DataItem as Borrower).BorrowerId %></td>
                                 <td><%# (Container.DataItem as Borrower).FirstName %></td>
                                 <td><%# (Container.DataItem as Borrower).LastName %></td>
-                                <td><%# (Container.DataItem as Borrower).GetType() %></td>  
+                                <td><%# (Container.DataItem as Borrower).GetBorrowerTypeDescription((Container.DataItem as Borrower).BorrowerType) %></td>  
                                 <td><%# (Container.DataItem as Borrower).Status %></td>  
                                 <td><asp:Button CommandArgument='<%# (Container.DataItem as Borrower).BorrowerId %>' OnClick="GoToViewAccount" runat="server" Text="View Account" CssClass="btn btn-primary" /> </td>
 
@@ -53,7 +57,10 @@
                         </ItemTemplate>
                     </asp:Repeater>
                 </table>
+                </ContentTemplate>
+            </asp:UpdatePanel>
             </div>
+     
             <div class="tab-pane fade m-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <table class="table mt-5">
                     <asp:Repeater ID="rptLiveAccounts" runat="server">
@@ -113,7 +120,9 @@
                 </ItemTemplate>
             </asp:Repeater>
             </table></div>
+          
             </div>
-    
+
+   
             </asp:Content>
 

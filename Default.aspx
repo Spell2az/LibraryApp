@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="row justify-content-center">
-        <asp:Button ID="btnEditGenre" OnClick="HandlerEditGenre" runat="server" Text="Edit Genres"/>
+        
         <asp:Button ID="btnGoToBookManagement" OnClick="HandlerManageBooks" runat="server" Text="Book Management"/>
         <asp:Button OnClick="HandlerGoToBorrowerArea" runat="server"/>
         <asp:Button runat="server" OnClick="HandlerViewStudentAccounts" Text="Student Accounts"/>

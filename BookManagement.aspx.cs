@@ -9,7 +9,7 @@ public partial class BookManagement : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Response.Write(Session["user"]);
         if (!Page.IsPostBack)
         {
             var books = new BookCollection();
@@ -109,5 +109,8 @@ public partial class BookManagement : System.Web.UI.Page
         FillDropDown();
     }
 
-
+    protected void HandlerEditGenre(object sender, EventArgs e)
+    {
+        Response.Redirect("EditGenre.aspx");
+    }
 }

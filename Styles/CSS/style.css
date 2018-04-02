@@ -116,3 +116,6 @@ footer {
     flex-grow: 4;
 }
 
+.btn {
+    border-radius: 0 !important;
+}
