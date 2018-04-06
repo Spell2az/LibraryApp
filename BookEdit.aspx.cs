@@ -94,6 +94,7 @@ public partial class BookEdit : System.Web.UI.Page
         else
         {
             bookCollection.Update();
+            Response.Redirect("BookManagement.aspx");
         }
     }
 

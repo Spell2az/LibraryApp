@@ -10,11 +10,11 @@ public partial class BorrowerArea : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         var account = new Borrower();
-        account.Find(Session["user"].ToString());
+        account.Find(Session["id"].ToString());
         lblUser.Text = $"Welcome, {account.FirstName} {account.LastName}";
 
-        lblLoans.Text = account.Loans.FindAll(loan => loan.LoanReturnDate == null).Count.ToString();
-        lblFines.Text = account.Fines.FindAll(fine => fine.FineStatus.Trim() == "DUE").Count.ToString();
+        lblLoans.Text = $"{account.Loans.FindAll(loan => loan.LoanReturnDate == null).Count.ToString()} / {account.GetBorrowerMaxLoans()}";
+        lblFines.Text = account.Fines.FindAll(fine => fine.FineStatus.Trim() == "DUE").Sum(fine => fine.FineAmount).ToString("C");
         lblResrvation.Text = account.Reservations.FindAll(reservation => reservation.ClearedDate == null).Count
             .ToString();
 

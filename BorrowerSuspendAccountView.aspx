@@ -100,11 +100,13 @@
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
+                        <tr>
                         <td><%# (Container.DataItem as Fine).FineId %></td>
                         <td><%# (Container.DataItem as Fine).FineDate.ToString("dd/MM/yyyy") %></td>
                         <td><%# (Container.DataItem as Fine).FineAmount.ToString("C") %></td>
                         <td><%# (Container.DataItem as Fine).FineStatus %></td>
                         <td><%# (Container.DataItem as Fine).LoanId %></td>
+                        </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </table>

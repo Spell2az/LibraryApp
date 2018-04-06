@@ -103,4 +103,18 @@ public class Borrower
     //    dc.AddParameter("@bor_id", borrowerId);
     //    dc.Execute("sproc_Get")
     //}
+
+
+    public int GetBorrowerMaxLoans()
+    {
+        var dc = new DataConnection();
+        dc.AddParameter("@bor_type_id", BorrowerType);
+        dc.Execute("sproc_GetBorrowerMaxLoans");
+
+        if (dc.Count != 1) return 0;
+
+
+        return Convert.ToInt32(dc.DataTable.Rows[0]["normal_max_loans"]);
+
+    }
 }

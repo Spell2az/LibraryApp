@@ -56,9 +56,9 @@ public class FineCollection
         {
             var temp = new Dictionary<string, string>
             {
-                { "fineDate", Convert.ToDateTime(row["fine_date"]).ToString("dd/MMMM/yyyy") },
+                { "fineDate", Convert.ToDateTime(row["fine_date"]).ToString("dd MMMM yyyy") },
                 { "fineAmount", Convert.ToDecimal(row["fine_amount"]).ToString("C")},
-                { "paymentDate", Convert.ToDateTime(row["pmt_date"]).ToString("dd/MMMM/yyyy") },
+                { "paymentDate", Convert.ToDateTime(row["pmt_date"]).ToString("dd MMMM yyyy") },
                 { "paymentAmount", Convert.ToDecimal(row["pmt_amount"]).ToString("C")},
                 { "loanType", row["cop_loan_type"].ToString() },
                 { "loanId", row["loan_id"].ToString() },

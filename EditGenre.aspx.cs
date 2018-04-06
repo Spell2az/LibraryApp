@@ -62,7 +62,7 @@ public partial class EditGenre : System.Web.UI.Page
 
     protected void HanlderCancelUpdateGenre(object sender, EventArgs e)
     {
-        Response.Redirect("Default.aspx");
+        Response.Redirect("BookManagement.aspx");
     }
 
     protected void HandlerGenreSelected(object sender, EventArgs e)

@@ -1,22 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="BorrowerArea.aspx.cs" Inherits="BorrowerArea" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:Label runat="server" ID="lblUser"></asp:Label>
-    <asp:Button OnClick="HandlerGoToDetails" runat="server" Text="Personal Details"/>
-    <div>
-        <h4>Account information</h4>
-        <asp:Label runat="server" Text="Loans: "></asp:Label>
-        <asp:Label runat="server" ID="lblLoans"></asp:Label>
-        <br />
-        <asp:Label runat="server" Text="Reserved: "></asp:Label>
-        <asp:Label runat="server" ID="lblResrvation"></asp:Label>
-        
-        <br />
-        <asp:Label runat="server" Visible="True" Text="Fines: "></asp:Label>
-        <asp:Label runat="server" ID="lblFines"></asp:Label>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div class="row justify-content-around">
+        <div class="h2">
+            <asp:Label runat="server" ID="lblUser"></asp:Label>
+        </div>
+        <div>
+            <h5>Account information:</h5>
+            <asp:Label runat="server" Text="Loans: "></asp:Label>
+            <asp:Label runat="server" ID="lblLoans"></asp:Label>
+            <br />
+            <asp:Label runat="server" Text="Reserved: "></asp:Label>
+            <asp:Label runat="server" ID="lblResrvation"></asp:Label>
+
+            <br />
+            <asp:Label runat="server" Visible="True" Text="Fines: "></asp:Label>
+            <asp:Label runat="server" ID="lblFines"></asp:Label>
+        </div>
     </div>
+    <hr />
     <div class="mt-3">
         <ul class="nav nav-tabs" id="mainTab" role="tablist">
             <li class="nav-item">
@@ -30,8 +34,8 @@
             </li>
         </ul>
         <div class="tab-content" id="mainTabContent">
-            
-<%--------------------------------------LOANS-----------------------------------------%>
+
+            <%--------------------------------------LOANS-----------------------------------------%>
 
             <div class="tab-pane fade show active" id="loans" role="tabpanel" aria-labelledby="loans-tab">
                 <ul class="nav nav-pills mb-3 mt-3" id="pills-loans-tab" role="tablist">
@@ -60,14 +64,16 @@
                                     <tr>
                                         <td><%# (Container.DataItem as Loan).LoanId %></td>
                                         <td><%# (Container.DataItem as Loan).GetBookTitle((Container.DataItem as Loan).CopyBarcode) %></td>
-                                        <td><%# (Container.DataItem as Loan).LoanIssueDate %></td>
-                                        <td><%# (Container.DataItem as Loan).LoanDueDate %></td>
+                                        <td><%# (Container.DataItem as Loan).LoanIssueDate.ToString("dd MMMM yyyy") %></td>
+                                        <td><%# (Container.DataItem as Loan).LoanDueDate.ToString("dd MMMM yyyy") %></td>
                                         <td><%# (int)((Container.DataItem as Loan).LoanDueDate - DateTime.Today).TotalDays == 0 
                                                     ? "Due Today" 
                                                     : (int)((Container.DataItem as Loan).LoanDueDate - DateTime.Today).TotalDays > 0 
                                                     ? $"{(int)((Container.DataItem as Loan).LoanDueDate - DateTime.Today).TotalDays} day(s)" 
                                                     : $"{-(int)((Container.DataItem as Loan).LoanDueDate - DateTime.Today).TotalDays} day(s) Overdue" %></td>
-                                        <td><asp:Button runat="server" CssClass="btn btn-outline-warning" Text="Extend"/> </td>
+                                        <td>
+                                            <asp:Button runat="server" CssClass="btn btn-outline-warning" Text="Extend" />
+                                        </td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
@@ -89,19 +95,19 @@
                                     <tr>
                                         <td><%# (Container.DataItem as Loan).LoanId %></td>
                                         <td><%# (Container.DataItem as Loan).GetBookTitle((Container.DataItem as Loan).CopyBarcode) %></td>
-                                        <td><%# (Container.DataItem as Loan).LoanIssueDate %></td>
-                                        <td><%# (Container.DataItem as Loan).LoanDueDate %></td>
-                                        <td><%# (Container.DataItem as Loan).LoanReturnDate %></td>
+                                        <td><%# (Container.DataItem as Loan).LoanIssueDate.ToString("dd MMMM yyyy") %></td>
+                                        <td><%# (Container.DataItem as Loan).LoanDueDate.ToString("dd MMMM yyyy") %></td>
+                                        <td><%# (Container.DataItem as Loan).LoanReturnDate.HasValue ? Convert.ToDateTime((Container.DataItem as Loan).LoanReturnDate).ToString("dd MMMM yyyy") : "" %></td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </table>
                     </div>
-                    
+
                 </div>
             </div>
-            
-<%--------------------------------------RESERVATIONS-----------------------------------------%>
+
+            <%--------------------------------------RESERVATIONS-----------------------------------------%>
 
             <div class="tab-pane fade" id="reservations" role="tabpanel" aria-labelledby="reservations-tab">
                 <ul class="nav nav-pills mb-3 mt-3" id="pills-reservations-tab" role="tablist">
@@ -128,10 +134,12 @@
                                     <tr>
                                         <td><%# (Container.DataItem as Reservation).ReservationId %></td>
                                         <td><%# (Container.DataItem as Reservation).GetBookTitle((Container.DataItem as Reservation).ReservedIsbn) %></td>
-                                        <td><%# (Container.DataItem as Reservation).ReservationDate %></td>
-                                        <td><%# (Container.DataItem as Reservation).ReservationDate.AddDays(3) %></td>
-                                        
-                                        <td><asp:Button runat="server"  Text="Extend"/> </td>
+                                        <td><%# (Container.DataItem as Reservation).ReservationDate.ToString("dd MMMM yyyy") %></td>
+                                        <td><%# (Container.DataItem as Reservation).ReservationDate.AddDays(3).ToString("dd MMMM yyyy") %></td>
+
+                                        <td>
+                                            <asp:Button runat="server" Text="Extend" />
+                                        </td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
@@ -152,21 +160,21 @@
                                     <tr>
                                         <td><%# (Container.DataItem as Reservation).ReservationId %></td>
                                         <td><%# (Container.DataItem as Reservation).GetBookTitle((Container.DataItem as Reservation).ReservedIsbn) %></td>
-                                        <td><%# (Container.DataItem as Reservation).ReservationDate %></td>
-                                        <td><%# (Container.DataItem as Reservation).ClearedDate %></td>
-                                        
-                                        
+                                        <td><%# (Container.DataItem as Reservation).ReservationDate.ToString("dd MMMM yyyy") %></td>
+                                        <td><%# (Container.DataItem as Reservation).ClearedDate.HasValue ? Convert.ToDateTime((Container.DataItem as Reservation).ClearedDate).ToString("dd MMMM yyyy") : ""  %></td>
+
+
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </table>
                     </div>
-                    
+
                 </div>
             </div>
 
-<%--------------------------------------FINES-----------------------------------------%>
-            
+            <%--------------------------------------FINES-----------------------------------------%>
+
 
             <div class="tab-pane fade" id="fines" role="tabpanel" aria-labelledby="fines-tab">
                 <ul class="nav nav-pills mb-3 mt-3" id="pills-fines-tab" role="tablist">
@@ -183,7 +191,7 @@
                             <asp:Repeater ID="rptCurrentFines" runat="server">
                                 <HeaderTemplate>
                                     <tr>
-                                        
+
                                         <th>Fine Date</th>
                                         <th>Fine Amount</th>
                                         <th>Late return Loan id</th>
@@ -193,11 +201,12 @@
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <tr>
-                                        <td><%# (Container.DataItem as Fine).FineDate %></td>
+                                        <td><%# (Container.DataItem as Fine).FineDate.ToString("dd MMMM yyyy") %></td>
                                         <td><%# (Container.DataItem as Fine).FineAmount %></td>
                                         <td><%# (Container.DataItem as Fine).LoanId %></td>
                                         <td><%# (Container.DataItem as Fine).GetBookTitle((Container.DataItem as Fine).LoanId) %></td>
-                                        <td><asp:Button runat="server" OnClick="HandlerGoToPayment" CommandArgument='<%# (Container.DataItem as Fine).FineId %>' Text="Pay Fine"/></td>
+                                        <td>
+                                            <asp:Button runat="server" OnClick="HandlerGoToPayment" CommandArgument='<%# (Container.DataItem as Fine).FineId %>' Text="Pay Fine" /></td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
@@ -227,14 +236,14 @@
                                         <td><%# (Container.DataItem as Dictionary<string, string>)["loanType"] %></td>
                                         <td><%# (Container.DataItem as Dictionary<string, string>)["loanId"] %></td>
                                         <td><%# (Container.DataItem as Dictionary<string, string>)["title"] %></td>
-                                       
-                                        
+
+
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </table>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

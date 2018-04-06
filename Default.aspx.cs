@@ -22,7 +22,8 @@ public partial class _Default : System.Web.UI.Page
                 Response.Redirect("BookCatalogue.aspx");
                 break;
             case "borrower":
-                Response.Redirect("BookCatalogue.aspx");
+                Session["id"] = Request.QueryString["id"];
+                Response.Redirect("BorrowerArea.aspx");
                 break;
             default:
                 Response.Redirect("Default.aspx");

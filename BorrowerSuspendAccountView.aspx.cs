@@ -43,5 +43,6 @@ public partial class BorrowerSuspendAccountView : System.Web.UI.Page
         account.Find(_borrowerId);
         account.Status = rdSuspended.Checked ? "Suspended" : "Live";
         borrowers.Update();
+        Response.Redirect("BookManagement.aspx");
     }
 }

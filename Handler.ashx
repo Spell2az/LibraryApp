@@ -2,6 +2,7 @@
 
 using System;
 using System.Web;
+using System.Web.ModelBinding;
 
 public class Handler : IHttpHandler {
 
@@ -16,7 +17,9 @@ public class Handler : IHttpHandler {
         {
             if (borrower.Email.Trim() == email)
             {
-                context.Response.Redirect($"Default.aspx?id={id}&email={email}");
+                
+                
+                context.Response.Redirect($"Default.aspx?user=borrower&id={id}");
             }
         }
         else

@@ -13,7 +13,7 @@ public partial class UserDetails : System.Web.UI.Page
         txtUserId.Enabled = false;
         txtFirstName.Enabled = false;
         txtLastName.Enabled = false;
-        if (account.Find(Session["user"].ToString()))
+        if (account.Find(Session["id"].ToString()))
         {
             if (!Page.IsPostBack)
             {
