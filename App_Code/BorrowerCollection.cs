@@ -9,7 +9,9 @@ using System.Web;
 /// </summary>
 public class BorrowerCollection
 {
+    //private field of type data connection(makes data connection available between mehtods)
     private DataConnection _dc;
+    //borrower property - used to update and add records
     public Borrower Borrower { get; set; } = new Borrower();
 
     public BorrowerCollection()
@@ -18,7 +20,8 @@ public class BorrowerCollection
         // TODO: Add constructor logic here
         //
     }
-
+    //property which returns list of borrower objects from data table property of a data connection,
+    // must be accessed after calling filter otherwise list is empty
     public List<Borrower> BorrowerList => (from DataRow row in _dc.DataTable.Rows
         select new Borrower
         {
@@ -43,7 +46,7 @@ public class BorrowerCollection
 
     }
 
-
+    //Updates record in the book table in db.
     public void Update()
     {
         _dc = new DataConnection();
@@ -59,7 +62,7 @@ public class BorrowerCollection
         _dc.AddParameter("@bor_status", Borrower.Status);
         _dc.Execute("sproc_UpdateBorrower");
     }
-
+    //filters borrower records by borrower id, first and last name
     public void FilterByFirstAndLastNameAndId(string borrowerId, string firstName, string lastName)
     {
         _dc = new DataConnection();

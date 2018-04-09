@@ -9,6 +9,8 @@ using System.Web;
 /// </summary>
 public class Borrower
 {
+
+    //Create properties reflecting attributes of a record book borrower table
     public string BorrowerId { get; set; }
     public string BorrowerType { get; set; }
     public string FirstName { get; set; }
@@ -20,6 +22,7 @@ public class Borrower
     public string Email { get; set; }
     public string Status { get; set; }
 
+    //gets list of loans for current borrower
     public List<Loan> Loans
     {
         get
@@ -32,6 +35,7 @@ public class Borrower
             return null;
         }
     }
+    //gets list of fines for current borrower
     public List<Fine> Fines
     {
         get
@@ -44,6 +48,7 @@ public class Borrower
             return null;
         }
     }
+    //gets list of reservations for current borrower
     public List<Reservation> Reservations
     {
         get
@@ -63,17 +68,21 @@ public class Borrower
         // TODO: Add constructor logic here
         //
     }
-
+    //Method checks if there is a record of a borrower with passed in borrowerId in the database
+    // if found sets properties on a borrower object
     public bool Find(string borrowerId)
     {
+        //Connection to the database
         var dc = new DataConnection();
+        //Pass parameter to the stored procedure
         dc.AddParameter("@bor_id", borrowerId);
+        //Execute stored procedure
         dc.Execute("sproc_GetBorrowerById");
-
+        //If returned result doesn't contain exactly one record return false
         if (dc.Count != 1) return false;
 
         var row = dc.DataTable.Rows[0];
-
+        //Sets object properties to coresponding columns returned from db and returns true
         BorrowerId = row["bor_id"].ToString();
         BorrowerType = row["fk1_bor_type_id"].ToString();
         FirstName = row["bor_firstname"].ToString();
